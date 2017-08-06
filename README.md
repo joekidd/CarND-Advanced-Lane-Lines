@@ -123,8 +123,9 @@ I also skip recalculating the histograms, when one was already found, as at this
 ## 3. Results
 
 Please find the result of the above algorithm on the video below. Clicking on it will move you to youtube to the full version of the video.
-
+<a href="https://youtu.be/tITn8HRFOe4">
 <img src="docs/track_1.gif"/>
+</a>
 
 After simple modifications (Region of interest), the algorithm works well for the challenge video as well:
 
