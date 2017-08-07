@@ -106,9 +106,11 @@ Finally, the center of each window is used in <b>numpy polyfit</b> algorithm, wh
 
 #### 2.9 Measuring curvature and car position
 
-Finally, knowing the parameters of the polynomians and pixels to meters conversion, I am able to calculate the radius of the curve. It's been implemented in the class CurvatureEstimator. 
+Finally, knowing the parameters of the polynomians and pixels to meters conversion. The crucial part of the curvature and position measurement, is to calculate correct conversion values. The above polynomial is found in the warped image space, which has size of 200x200px. I also know, that the lane width should be at least 3.7 meters and dashed line is 3 meters long. After analysing images as the one below, I can assume, that lane width is around 135 pixels and line width is around 35 pixels. Therefore I get 3.7/135 as the x conversion value and 3/35 as the y conversion value.  
 
-One more thing, that is worth adding at this point is the case of straight road. This situation might be considered as a curvature of a circle with infinit large radius. Therefore all curvatures greater than 1.5km are considered as straight line and the value of 0 is presented as a curvature.
+<img src="docs/distance.png"/>
+
+The curvature is calculated by converting the polynomial into real world coordinates and using their coefficients to obtain the actual value. One more thing, that is worth adding at this point is the case of straight road. This situation might be considered as a curvature of a circle with infinit large radius. Therefore all curvatures greater than 1.5km are considered as straight line.
 
 In order to determine car position within the lanes, I assume the camera is located in the center of the image. I also calculate where the fitted lanes should be located at the very bottom of the image. The next step is to calculate the road center and compare it to the car position, so that I can determine how far from the road center, the car is.
 
@@ -122,11 +124,11 @@ I also skip recalculating the histograms, when one was already found, as at this
 
 ## 3. Results
 
-Please find the result of the above algorithm on the video below. Clicking on it will move you to youtube to the full version of the video.</br>
-<a href="https://youtu.be/tITn8HRFOe4">
+Please find the result of the above algorithm on the video below. Clicking on it will move you to youtube to the full version of the video.
+
+<a href="https://www.youtube.com/watch?v=-ykwXPMXmhk&feature=youtu.be">
 <img src="docs/track_1.gif"/>
 </a>
-
 After simple modifications (Region of interest), the algorithm works well for the challenge video as well:
 
 <img src="docs/track_2.gif"/>
